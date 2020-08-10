@@ -14,44 +14,39 @@ public class ConvertNumberToWords {
 	static String[] c = {"", "", "hundred", "thousand", "", "lakh", "", "crore"};
 	
 	public static  String convertNumberToWords (String input) {
-		
-		
 		StringBuilder builder  = new StringBuilder();
 		char[] tmp = input.toCharArray();
-		if(tmp != null) {
-			int len = tmp.length;
-			String val = "";
-			for(int i = 0; i < len; i ++) {
-				val += tmp[i];
-				String label = c[len - i - 1];
-				if(label.length() > 0)  {
-					if(builder.length() > 0 ) {
-						builder.append(" ");
-					}
-					builder.append(convertToWord (val, label));
-					val = "";
-				}
-			}
-			
-			if(val.length() > 0) {
+		int len = tmp.length;
+		int digit = 0;
+		for(int i = 0; i < len; i ++) {
+			digit = (digit * 10) + (tmp[i] - '0');
+			String label = c[len - i - 1];
+			if(label.length() > 0)  {
 				if(builder.length() > 0 ) {
 					builder.append(" ");
 				}
-				builder.append(convertToWord (val, ""));
+				builder.append(convertToWord (digit, label));
+				digit = 0;
 			}
 		}
-		
- 
+
+		if(digit > 0) {
+			if(builder.length() > 0 ) {
+				builder.append(" ");
+			}
+			builder.append(convertToWord (digit, ""));
+		}
+
+
 		return builder.toString();
 	}
 	
-	private static String convertToWord(String value, String label) {
+	private static String convertToWord(int value, String label) {
 		String result = "";
-		int tmp = Integer.parseInt(value);
-		if(tmp < 20) {
-			result += a[tmp];
+		if(value < 20) {
+			result += a[value];
 		}else {
-			result += b[(tmp/10)] + " " + a[(tmp % 10)];
+			result += b[(value/10)] + " " + a[(value % 10)];
 			
 		}
 		

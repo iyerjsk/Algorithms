@@ -1,4 +1,4 @@
-package longestCommonSubsequence;
+package stringProblems;
 
 /**
  * Given two strings text1 and text2, return the length of their longest common subsequence.
@@ -40,7 +40,7 @@ package longestCommonSubsequence;
  *                Math.max(T[i-1][j], T[i][j-1]) otherwise
  */
 
-public class Solution {
+public class LongestCommonSubsequence {
     public int longestCommonSubsequence(String text1, String text2) {
         if(text1 == null || text1.length() == 0 || text2 == null || text2.length() == 0) return  0;
         char[] input1 = text1.toCharArray();
@@ -62,10 +62,10 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Solution().longestCommonSubsequence("abcde", "ace"));
-        System.out.println(new Solution().longestCommonSubsequence("abcdaf", "acbcf"));
-        System.out.println(new Solution().longestCommonSubsequence("abc", "abc"));
-        System.out.println(new Solution().longestCommonSubsequence("abc", "def"));
+        System.out.println(new LongestCommonSubsequence().longestCommonSubsequence("abcde", "ace"));
+        System.out.println(new LongestCommonSubsequence().longestCommonSubsequence("abcdaf", "acbcf"));
+        System.out.println(new LongestCommonSubsequence().longestCommonSubsequence("abc", "abc"));
+        System.out.println(new LongestCommonSubsequence().longestCommonSubsequence("abc", "def"));
     }
 }
 
